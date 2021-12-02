@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/commons::head">
+</head>
+<body class="bg-dark">
+<header th:replace="fragments/commons::nav">
+
+</header>
+<main role="main" class="bg-dark">
+
+    <section th:replace="fragments/commons::welcome"></section>
+
+    <div class="container bg-dark rounded p-5 mt-5 w-75">
+        <form
+                th:action="@{/user/delete-user}"
+                th:object="${userDeleteBindingModel}"
+                th:method="delete"
+                class=" text-center text-light">
+
+            <div class="form-group row text-warning">
+                <label for="username" class="col-sm-2 col-form-label">Username</label>
+                <div class="col-sm-10">
+                    <input
+                            th:field="*{username}"
+                            th:errorclass="is-invalid"
+                            type="text" class="form-control" id="username"
+                            aria-describedby="usernameHelpInline" placeholder="Username">
+                    <small id="usernameHelpInline" class="invalid-feedback bg-danger text-light rounded">
+                        Username length must be between 4 and 20 characters.
+                    </small>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-dark text-warning w-50">Delete user</button>
+
+        </form>
+
+    </div>
+
+    <a class="btn btn-dark btn-block btn-warning bg-dark text-warning align-content-center mt-5" href="/" role="button">BACK</a>
+
+</main>
+
+<footer th:replace="fragments/commons::footer">
+</footer>
+</body>
+</html>
