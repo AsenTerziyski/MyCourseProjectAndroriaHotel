@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head th:replace="fragments/commons::head">
+</head>
+
+<body class="bg-dark">
+<header th:replace="fragments/commons::nav"></header>
+
+<main role="main" class="bg-dark">
+
+    <section class="site-header text-danger">
+        <h1>Here you can remove those offers that you have posted or any of them if you are Admin!</h1>
+    </section>
+
+    <div th:each="o : ${offers}" th:object="${o}" class="container align-content-center bg-dark p-2 mt-5">
+
+        <div class="row align-content-center bg-dark">
+            <li class="list-group-item bg-dark text-warning">
+                <div class="card-text bg-dark text-warning"><span th:text="|OFFER POSTED BY: *{addedBy.toUpperCase()}|">Posted by</span></div>
+                <div class="card-text bg-dark text-warning"><span th:text="|&nbsp Offer id *{id}:|">Offer id</span></div>
+                <div class="card-text bg-dark text-warning"><span th:text="|&nbsp&nbsp - Room type: *{room};|">RoomType</span></div>
+                <div class="card-text bg-dark text-warning"><span th:text="|&nbsp&nbsp - Discount: *{#numbers.formatDecimal(discount, 1, 0)}%;|">Discount</span></div>
+                <div class="card-text bg-dark text-warning"><span th:text="|&nbsp&nbsp - VIP Discount: *{#numbers.formatDecimal(vipDiscount, 1,0)}%;|">VIP Discount</span></div>
+                <div class="card-text bg-dark text-warning"><span th:text="|&nbsp&nbsp - Stay: *{stay} days.|">Stay</span>
+                </div>
+            </li>
+        </div>
+
+        <form th:action="@{/offers/remove/{id}(id = *{id})}" th:method="post"><input
+                class="nav-link text-danger bg-dark" type="submit" value="REMOVE OFFER!">
+        </form>
+
+    </div>
+
+    <a class="btn btn-dark btn-block btn-warning bg-dark text-warning align-content-center mt-5" href="/" role="button">BACK</a>
+</main>
+<footer th:replace="fragments/commons::footer">
+</footer>
+</body>
+</html>
