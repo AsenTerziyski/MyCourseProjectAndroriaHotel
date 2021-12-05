@@ -41,7 +41,7 @@ ENGLISH:
 
 Androria app is hotel site aplication.
 Ordinary guest of the application can make bookings, can send messages to hotel staff. 
-Also he can check offers and prices sections and take a look at all the hotel services.
+Also he can check offer and price sections and take a look at all the hotel services.
 
 The final price of the booking is determined according to the conditions of the posted offers and prices.
 If a guest has more than 3 bookins so far, he becomes a VIP guest and can take advanteges for vip guests.
