@@ -1,0 +1,53 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: "jdbc:mysql://localhost:3306/androriaDB?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC"
+    username: root
+    password: M@lmsuite3996
+
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+
+  #  sql:
+  #    init:
+  #      mode: always
+
+  jpa:
+    # Choose either MySQL 8 or MySQL 5 below
+    # For MySQL 8
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    #For MySQL 5
+    #database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  #    defer-datasource-initialization: true
+
+  #Cloudinary Properties
+cloudinary:
+  api-key: 988518893397762
+  api-secret: ${CLOUDINARY_API_SECRET}
+  cloud-name: malmsuite
+
+schedulers:
+  cronReviews: "*/50 * * * * *"
+  cronReviewsTemp: "30 7 18 9 * *"
+  cronDeleteBrowsingUsers: "30 7 18 9 * *"
+  cronAddVipGuest: "*/100 * * * * *"
+
+androria:
+  andraop.enabled: true
+  andrmodifying.enabled: true
