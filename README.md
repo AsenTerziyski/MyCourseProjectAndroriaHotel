@@ -53,10 +53,11 @@ Hotel staff (users and admin) can make various updates. They can login at the to
 Admin may add or delete users, offers made by himself or other users, delete reviews by guests, may edit prices etc.
 He also can watch which user was logged during the day.
 
-Ordinary hotel staff (users) may add or delete offers made by themselves etc. They have restricted rights comparing with the admin. 
+Ordinary hotel staff (users) may add or delete offers made by themselves and etc. They have restricted rights comparing with the admin. 
 
 All users can delete expiring bookings (chekOut date is in past).
 
 For educational purposes are initialized users, offers, prices and reviews.
+
 Users and passwords
 admin,  tuser, tuser2, tuser3, tuser4 -> all of them with password 12345.
