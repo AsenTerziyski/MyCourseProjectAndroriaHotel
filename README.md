@@ -1,7 +1,7 @@
 # MyCourseProjectAndroriaHotelApp
 
 LINK TO HEROKU:
-https://hotelandroria.herokuapp.com/
+https://androria.herokuapp.com/
 
 BULGARIAN:
 
