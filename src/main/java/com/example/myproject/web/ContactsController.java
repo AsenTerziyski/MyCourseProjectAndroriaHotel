@@ -45,8 +45,8 @@ public class ContactsController {
             redirectAttributes
                     .addFlashAttribute("messageSendBindingModel", messageSendBindingModel)
                     .addFlashAttribute("org.springframework.validation.BindingResult.messageSendBindingModel",
-                            messageSendBindingModel);
-            return "contacts";
+                            bindingResult);
+            return "redirect:/contacts";
         }
         sendMessage(messageSendBindingModel);
         return "index_androria";

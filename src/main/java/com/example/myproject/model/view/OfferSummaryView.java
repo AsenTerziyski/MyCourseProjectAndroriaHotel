@@ -14,6 +14,16 @@ public class OfferSummaryView {
     private String description;
     private long stay;
     private String  addedBy;
+    private Boolean canDelete;
+
+    public Boolean getCanDelete() {
+        return canDelete;
+    }
+
+    public OfferSummaryView setCanDelete(Boolean canDelete) {
+        this.canDelete = canDelete;
+        return this;
+    }
 
     public OfferSummaryView() {
     }

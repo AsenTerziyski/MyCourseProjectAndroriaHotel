@@ -46,7 +46,7 @@ public class OffersEntity extends BaseEntity {
         return this;
     }
 
-    @Lob
+    @Column(columnDefinition = "TEXT")
     public String getDescription() {
         return description;
     }

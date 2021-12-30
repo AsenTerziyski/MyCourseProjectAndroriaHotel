@@ -31,7 +31,7 @@ public class ReviewTempEntity extends BaseEntity{
         return this;
     }
 
-    @Lob
+    @Column(columnDefinition = "TEXT")
     public String getReviewText() {
         return reviewText;
     }

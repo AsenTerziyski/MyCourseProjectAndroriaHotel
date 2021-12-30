@@ -73,15 +73,15 @@ public class PictureController {
             redirectAttributes
                     .addFlashAttribute("pictureBindingMode", pictureBindingModel)
                     .addFlashAttribute("pictureIsEmpty", true);
-            return "picture-add";
+            return "redirect:/pictures/add";
         }
 
         if (bindingResult.hasErrors()) {
             redirectAttributes
                     .addFlashAttribute("pictureBindingModel", pictureBindingModel)
                     .addFlashAttribute("org.springframework.validation.BindingResult.pictureBindingModel",
-                            pictureBindingModel);
-            return "picture-add";
+                            bindingResult);
+            return "redirect:/pictures/add";
         }
 
         String contentType = picture.getContentType();

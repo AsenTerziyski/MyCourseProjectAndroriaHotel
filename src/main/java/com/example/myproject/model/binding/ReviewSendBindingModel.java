@@ -1,6 +1,8 @@
 package com.example.myproject.model.binding;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class ReviewSendBindingModel {
@@ -20,6 +22,7 @@ public class ReviewSendBindingModel {
         return this;
     }
 
+    @NotBlank
     @Email
     public String getEmail() {
         return email;

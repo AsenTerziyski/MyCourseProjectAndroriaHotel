@@ -106,7 +106,7 @@ public class BookingEntity extends BaseEntity{
         return this;
     }
 
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "TEXT")
     public String getText() {
         return text;
     }

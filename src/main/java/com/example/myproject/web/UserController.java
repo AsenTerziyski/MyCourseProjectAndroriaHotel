@@ -73,7 +73,7 @@ public class UserController {
         if (bindingResult.hasErrors() || !userRegistrationBindingModel.getPassword().equals(userRegistrationBindingModel.getConfirmPassword())) {
             redirectAttributes.addFlashAttribute("userRegistrationBindingModel", userRegistrationBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userRegistrationBindingModel", bindingResult);
-            return "user-add";
+            return "redirect:/user/register";
         }
 
         UserRegistrationServiceModel userRegistrationServiceModel = this.modelMapper.map(userRegistrationBindingModel, UserRegistrationServiceModel.class);
@@ -110,7 +110,7 @@ public class UserController {
             redirectAttributes.addFlashAttribute("userDeleteBindingModel", userDeleteBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userDeleteBindingModel",
                     bindingResult);
-            return "user-delete";
+            return "redirect:/user/delete-user";
         }
 
         if (!this.userService.principalIsAdmin(principal)) {

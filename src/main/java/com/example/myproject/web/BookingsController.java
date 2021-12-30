@@ -4,6 +4,7 @@ import com.example.myproject.model.binding.BookingBindingModel;
 import com.example.myproject.model.entities.enums.RoomEnum;
 import com.example.myproject.model.view.BookingSummaryView;
 import com.example.myproject.service.BookingService;
+import com.example.myproject.service.UserService;
 import com.example.myproject.web.exceptions.UserNotSupportedOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -23,13 +24,21 @@ import static java.time.temporal.ChronoUnit.DAYS;
 @Controller
 public class BookingsController {
     private final BookingService bookingService;
+    private final UserService userService;
 
-    public BookingsController(BookingService bookingService) {
+    public BookingsController(BookingService bookingService, UserService userService) {
         this.bookingService = bookingService;
+        this.userService = userService;
+    }
+
+    @ModelAttribute
+    public BookingBindingModel bookingBindingModel() {
+        return new BookingBindingModel();
     }
 
     @GetMapping("/book")
     public String getBooking(Model model) {
+
         if (!model.containsAttribute("stayIsNegative")) {
             model.addAttribute("stayIsNegative", false);
         }
@@ -39,22 +48,19 @@ public class BookingsController {
         return "booking_create";
     }
 
-    @ModelAttribute
-    public BookingBindingModel bookingBindingModel() {
-        return new BookingBindingModel();
-    }
+
 
     @PostMapping("/book/create")
     private String booking(@Valid BookingBindingModel bookingBindingModel,
                            BindingResult bindingResult,
-                           RedirectAttributes redirectAttributes) {
+                           RedirectAttributes redirectAttributes, Model model) {
 
         if (bindingResult.hasErrors()) {
             redirectAttributes
                     .addFlashAttribute("bookingBindingModel", bookingBindingModel)
                     .addFlashAttribute("org.springframework.validation.BindingResult.bookingBindingModel",
-                            bookingBindingModel);
-            return "booking_create";
+                            bindingResult);
+            return "redirect:/book";
         }
         LocalDate checkIn = bookingBindingModel.getCheckIn();
         LocalDate checkOut = bookingBindingModel.getCheckOut();
@@ -72,8 +78,11 @@ public class BookingsController {
                     .addFlashAttribute("roomNotSelected", true);
             return "redirect:/book";
         }
-        this.bookingService.saveNewBooking(bookingBindingModel);
-        return "index_androria";
+        Long savedBookingId = this.bookingService.saveNewBooking(bookingBindingModel);
+        BookingSummaryView bookingById = this.bookingService.findBookingById(savedBookingId);
+
+        model.addAttribute("savedBooing", bookingById);
+        return "your-booking";
     }
 
     @GetMapping("/remove-booking")
@@ -86,12 +95,13 @@ public class BookingsController {
         return "booking-remove";
     }
 
-    @PostMapping("/bookings/remove/{id}")
+    @DeleteMapping("/bookings/remove/{id}")
     public String removeBooking(@PathVariable Long id, Principal principal) {
         if (principal == null) {
             String name = "not registered users";
             throw new UserNotSupportedOperation(name);
         }
+
         this.bookingService.removeBooking(id);
         return "redirect:/remove-booking";
     }

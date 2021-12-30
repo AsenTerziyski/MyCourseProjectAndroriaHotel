@@ -72,7 +72,7 @@ public class GuestEntity extends BaseEntity {
         return this;
     }
 
-    @Lob
+    @Column(columnDefinition = "TEXT")
     public String getListOfBookingsIds() {
         return listOfBookingsIds;
     }

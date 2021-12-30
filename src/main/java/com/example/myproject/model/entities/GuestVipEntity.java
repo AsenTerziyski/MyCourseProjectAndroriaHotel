@@ -51,7 +51,7 @@ public class GuestVipEntity extends BaseEntity {
         return this;
     }
 
-    @Lob
+    @Column(columnDefinition = "TEXT")
     public String getBookingsListId() {
         return bookingsListId;
     }

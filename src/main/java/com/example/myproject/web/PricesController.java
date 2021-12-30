@@ -64,8 +64,8 @@ public class PricesController {
             redirectAttributes
                     .addFlashAttribute("pricesEditBindingModel", pricesEditBindingModel)
                     .addFlashAttribute("org.springframework.validation.BindingResult.pricesEditBindingModel",
-                            pricesEditBindingModel);
-            return "prices-edit";
+                            bindingResult);
+            return "redirect:/prices/edit";
         }
         this.roomService.editPrice(pricesEditBindingModel);
         return "priceEditConfirmation";

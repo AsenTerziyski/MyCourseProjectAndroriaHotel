@@ -13,7 +13,7 @@ public class MessageEntity extends BaseEntity {
     public MessageEntity() {
     }
 
-    @Lob
+    @Column(columnDefinition = "TEXT")
     public String getMessageText() {
         return messageText;
     }

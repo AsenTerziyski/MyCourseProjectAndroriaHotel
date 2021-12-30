@@ -30,6 +30,7 @@ public class BookingBindingModel {
         return this;
     }
 
+    @NotBlank
     @Email
     public String getEmail() {
         return email;
@@ -40,6 +41,7 @@ public class BookingBindingModel {
         return this;
     }
 
+    @NotBlank
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -49,6 +51,7 @@ public class BookingBindingModel {
         return this;
     }
 
+    @NotNull
     @Future
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     public LocalDate getCheckIn() {
@@ -60,6 +63,7 @@ public class BookingBindingModel {
         return this;
     }
 
+    @NotNull
     @Future
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     public LocalDate getCheckOut() {
@@ -71,6 +75,7 @@ public class BookingBindingModel {
         return this;
     }
 
+    @NotNull
     public RoomEnum getRoom() {
         return room;
     }

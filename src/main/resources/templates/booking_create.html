@@ -51,9 +51,9 @@
                             th:field="*{phoneNumber}"
                             th:errorclass="is-invalid"
                             type="text" class="form-control" id="phone number"
-                            aria-describedby="nameHelpInline" placeholder="phone number">
+                            aria-describedby="nameHelpInline" placeholder="+359000000000">
                     <small id="nameHelpInline2" class="invalid-feedback bg-danger text-light rounded">
-                        Name must be between 10 and 20 characters.
+                        Please enter your phone number.
                     </small>
                 </div>
             </div>
@@ -83,7 +83,7 @@
                             type="date" class="form-control" id="orderTimeO"
                             aria-describedby="orderTimeHelpInline">
                     <small id="orderTimeHelpInlineO" class="invalid-feedback bg-danger text-light rounded">
-                        Check in date cannot be in the past or today.
+                        Please select check in date. It should be future.
                     </small>
                 </div>
             </div>
@@ -96,7 +96,7 @@
                            type="date" class="form-control" id="orderTime"
                            aria-describedby="orderTimeHelpInline">
                     <small id="orderTimeHelpInline" class="invalid-feedback bg-danger text-light rounded">
-                        Chek out date cannot be in the past or today.
+                        Please select check out date. It should be future and greater than check in date.
                     </small>
 
                 </div>

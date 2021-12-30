@@ -117,7 +117,7 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     @Transactional
-    public void saveNewBooking(BookingBindingModel bookingBindingModel) {
+    public Long saveNewBooking(BookingBindingModel bookingBindingModel) {
 
         LocalDate checkIn = bookingBindingModel.getCheckIn();
         LocalDate checkOut = bookingBindingModel.getCheckOut();
@@ -167,7 +167,7 @@ public class BookingServiceImpl implements BookingService {
         newBooking.setText(bookingBindingModel.getNotes());
 
         BookingEntity save = this.bookingRepository.save(newBooking);
-
+        Long savedBookingId = save.getId();
 
         String listOfBookingsIds = newGuestByEmailIfNotExists.getListOfBookingsIds();
 
@@ -178,6 +178,7 @@ public class BookingServiceImpl implements BookingService {
         listOfBookingsIds = listOfBookingsIds + save.getId() + " ";
         newGuestByEmailIfNotExists.setListOfBookingsIds(listOfBookingsIds);
         newGuestByEmailIfNotExists.getBookings().add(save);
+        return savedBookingId;
     }
 
     @Override
@@ -205,6 +206,15 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public void removeBooking(Long id) {
         this.bookingRepository.deleteById(id);
+    }
+
+    @Override
+    public BookingSummaryView findBookingById(Long savedBookingId) {
+        BookingEntity booking = this.bookingRepository.findById(savedBookingId).orElse(null);
+        if (booking != null) {
+            return this.modelMapper.map(booking, BookingSummaryView.class);
+        }
+        return null;
     }
 
 }

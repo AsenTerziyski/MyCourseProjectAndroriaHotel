@@ -44,12 +44,13 @@ public class ReviewsController {
     public String sendReview(@Valid ReviewSendBindingModel reviewSendBindingModel,
                              BindingResult bindingResult,
                              RedirectAttributes redirectAttributes) {
+        System.out.println();
 
         if (bindingResult.hasErrors()) {
             redirectAttributes
                     .addFlashAttribute("reviewSendBindingModel", reviewSendBindingModel)
-                    .addFlashAttribute("org.springframework.validation.BindingResult.reviewSendBindingModel", reviewSendBindingModel);
-            return "reviews";
+                    .addFlashAttribute("org.springframework.validation.BindingResult.reviewSendBindingModel", bindingResult);
+            return "redirect:/reviews";
         }
 
         this.guestService.addReview(reviewSendBindingModel);

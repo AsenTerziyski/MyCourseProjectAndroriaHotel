@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head th:replace="fragments/commons::head">
+</head>
+
+<body class="bg-dark">
+<header th:replace="fragments/commons::nav"></header>
+
+<main role="main" class="bg-dark">
+
+    <section th:replace="fragments/commons::welcome"></section>
+
+
+    <div th:object="${savedBooing}" class="container align-content-center bg-dark p-2 mt-0">
+        <div class="row align-content-center bg-dark">
+            <li class="list-group-item bg-dark text-warning">
+                <h3>
+                    <div class="card-text bg-dark text-red align-content-center"><span
+                            th:text="| Dear *{fullName}, Thank you for booking us! |">Full name</span></div>
+                    <br>
+                    <div class="card-text bg-dark text-red align-content-center"><span
+                            th:text="| Your booking is with No: ANDR*{id}. Booking details are as follows:|">id</span></div>
+                    <div class="card-text bg-dark text-red align-content-center"><span
+                            th:text="| - &#32;Check in date:  *{checkIn}|">Check in date</span></div>
+                    <div class="card-text bg-dark text-red align-content-center"><span
+                            th:text="| -  &#32;Check out date:  *{checkOut}|">Check out date</span></div>
+                    <div class="card-text bg-dark text-red align-content-center"><span
+                            th:text="| - &#32;Your stay:  *{stay} DAYS|">Price</span></div>
+                    <div class="card-text bg-dark text-red align-content-center"><span
+                            th:text="| - &#32;Total price:  *{price} BGN|">Price</span></div>
+                    <br>
+                    <div class="card-text bg-dark text-red align-content-center"><span
+                            th:text="| We are expecting you on *{checkIn} !|".></span></div>
+                    <div class="card-text bg-dark text-red align-content-center"><span Have a nice day!></span></div>
+                    <br>
+                </h3>
+
+            </li>
+        </div>
+    </div>
+
+    <a class="btn btn-dark btn-block btn-warning bg-dark text-warning align-content-center mt-5" href="/"
+       role="button">BACK</a>
+</main>
+<footer th:replace="fragments/commons::footer">
+</footer>
+</body>
+</html>

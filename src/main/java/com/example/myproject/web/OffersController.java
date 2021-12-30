@@ -47,8 +47,8 @@ public class OffersController {
             redirectAttributes
                     .addFlashAttribute("offerAddBindingModel", offerAddBindingModel)
                     .addFlashAttribute("org.springframework.validation.BindingResult.offerAddBindingModel",
-                            offerAddBindingModel);
-            return "offer-add";
+                            bindingResult);
+            return "redirect:/add-offer";
         }
 
         if (offerAddBindingModel.getDiscount() >= offerAddBindingModel.getVipDiscount()) {
@@ -74,17 +74,26 @@ public class OffersController {
     }
 
     @GetMapping("/remove-offer")
-    private String getRemoveOfferPage(Model model) {
+    private String getRemoveOfferPage(Model model, Principal principal) {
         List<OfferSummaryView> allOffers = this.offersService.getAllOffers();
         model.addAttribute("offers", allOffers);
+        for (OfferSummaryView offer : allOffers) {
+                boolean offerOwnerOrAdmin = this.offersService.isOfferOwner(principal, offer.getId());
+                if (offerOwnerOrAdmin) {
+                    offer.setCanDelete(true);
+                }
+        }
+
         return "offer-remove";
     }
 
-    @PostMapping("/offers/remove/{id}")
-    public String removeOffer(@PathVariable Long id, Principal principal) {
+    @DeleteMapping("/offers/remove/{id}")
+    public String removeOffer(@PathVariable Long id, Principal principal, Model model) {
         boolean offerOwnerOrAdmin = this.offersService.isOfferOwner(principal, id);
         if (!offerOwnerOrAdmin) {
-            throw new UserNotSupportedOperation(principal.getName());}
+            throw new UserNotSupportedOperation(principal.getName());
+        }
+
         this.offersService.removeOffer(id);
         return "redirect:/remove-offer";
     }

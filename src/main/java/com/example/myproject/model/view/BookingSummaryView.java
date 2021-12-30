@@ -9,8 +9,11 @@ import java.time.LocalDate;
 public class BookingSummaryView {
     private Long id;
     private LocalDate checkOut;
+    private LocalDate checkIn;
     private String fullName;
     private String text;
+    private BigDecimal price;
+    private long stay;
 
     public BookingSummaryView() {
     }
@@ -48,6 +51,33 @@ public class BookingSummaryView {
 
     public BookingSummaryView setText(String text) {
         this.text = text;
+        return this;
+    }
+
+    public LocalDate getCheckIn() {
+        return checkIn;
+    }
+
+    public BookingSummaryView setCheckIn(LocalDate checkIn) {
+        this.checkIn = checkIn;
+        return this;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public BookingSummaryView setPrice(BigDecimal price) {
+        this.price = price;
+        return this;
+    }
+
+    public long getStay() {
+        return stay;
+    }
+
+    public BookingSummaryView setStay(long stay) {
+        this.stay = stay;
         return this;
     }
 }
